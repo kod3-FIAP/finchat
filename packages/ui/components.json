@@ -2,16 +2,23 @@
 	"$schema": "https://ui.shadcn.com/schema.json",
 	"aliases": {
 		"components": "src/",
+		"hooks": "src/hooks",
+		"lib": "src/lib",
 		"ui": "src/",
 		"utils": "@finchat/ui"
 	},
+	"iconLibrary": "lucide",
+	"menuAccent": "subtle",
+	"menuColor": "default",
+	"registries": {},
 	"rsc": true,
-	"style": "new-york",
+	"style": "base-vega",
 	"tailwind": {
-		"baseColor": "zinc",
+		"baseColor": "stone",
 		"config": "",
-		"css": "unused.css",
-		"cssVariables": true
+		"css": "app/globals.css",
+		"cssVariables": true,
+		"prefix": ""
 	},
 	"tsx": true
 }

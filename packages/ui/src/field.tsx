@@ -1,21 +1,16 @@
 "use client";
 
-import { cn } from "@finchat/ui";
-import { Label } from "@finchat/ui/label";
-import { Separator } from "@finchat/ui/separator";
-import type { VariantProps } from "class-variance-authority";
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { useMemo } from "react";
+import { Label } from "./label";
+import { cn } from "./lib/utils";
+import { Separator } from "./separator";
 
-export function FieldSet({
-	className,
-	...props
-}: React.ComponentProps<"fieldset">) {
+function FieldSet({ className, ...props }: React.ComponentProps<"fieldset">) {
 	return (
 		<fieldset
 			className={cn(
-				"flex flex-col gap-6",
-				"has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3",
+				"flex flex-col gap-6 has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3",
 				className,
 			)}
 			data-slot="field-set"
@@ -24,7 +19,7 @@ export function FieldSet({
 	);
 }
 
-export function FieldLegend({
+function FieldLegend({
 	className,
 	variant = "legend",
 	...props
@@ -32,9 +27,7 @@ export function FieldLegend({
 	return (
 		<legend
 			className={cn(
-				"mb-3 font-medium",
-				"data-[variant=legend]:text-base",
-				"data-[variant=label]:text-sm",
+				"mb-3 font-medium data-[variant=label]:text-sm data-[variant=legend]:text-base",
 				className,
 			)}
 			data-slot="field-legend"
@@ -44,10 +37,7 @@ export function FieldLegend({
 	);
 }
 
-export function FieldGroup({
-	className,
-	...props
-}: React.ComponentProps<"div">) {
+function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
 	return (
 		<div
 			className={cn(
@@ -68,29 +58,23 @@ const fieldVariants = cva(
 		},
 		variants: {
 			orientation: {
-				horizontal: [
-					"flex-row items-center",
-					"[&>[data-slot=field-label]]:flex-auto",
-					"has-[>[data-slot=field-content]]:items-start has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
-				],
-				responsive: [
-					"@md/field-group:flex-row flex-col @md/field-group:items-center @md/field-group:[&>*]:w-auto [&>*]:w-full [&>.sr-only]:w-auto",
-					"@md/field-group:[&>[data-slot=field-label]]:flex-auto",
-					"@md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
-				],
-				vertical: ["flex-col [&>*]:w-full [&>.sr-only]:w-auto"],
+				horizontal:
+					"flex-row items-center has-[>[data-slot=field-content]]:items-start [&>[data-slot=field-label]]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+				responsive:
+					"@md/field-group:flex-row flex-col @md/field-group:items-center @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:[&>*]:w-auto [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+				vertical: "flex-col [&>*]:w-full [&>.sr-only]:w-auto",
 			},
 		},
 	},
 );
 
-export function Field({
+function Field({
 	className,
 	orientation = "vertical",
 	...props
 }: React.ComponentProps<"div"> & VariantProps<typeof fieldVariants>) {
 	return (
-		// biome-ignore lint/a11y/useSemanticElements: Shadcn default
+		// biome-ignore lint/a11y/useSemanticElements: shadcn default
 		<div
 			className={cn(fieldVariants({ orientation }), className)}
 			data-orientation={orientation}
@@ -101,14 +85,11 @@ export function Field({
 	);
 }
 
-export function FieldContent({
-	className,
-	...props
-}: React.ComponentProps<"div">) {
+function FieldContent({ className, ...props }: React.ComponentProps<"div">) {
 	return (
 		<div
 			className={cn(
-				"group/field-content flex flex-1 flex-col gap-1.5 leading-snug",
+				"group/field-content flex flex-1 flex-col gap-1 leading-snug",
 				className,
 			)}
 			data-slot="field-content"
@@ -117,16 +98,15 @@ export function FieldContent({
 	);
 }
 
-export function FieldLabel({
+function FieldLabel({
 	className,
 	...props
 }: React.ComponentProps<typeof Label>) {
 	return (
 		<Label
 			className={cn(
-				"group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50",
-				"has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4",
-				"has-data-[state=checked]:border-primary has-data-[state=checked]:bg-primary/5 dark:has-data-[state=checked]:bg-primary/10",
+				"group/field-label peer/field-label flex w-fit gap-2 leading-snug has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border has-data-checked:border-primary has-data-checked:bg-primary/5 group-data-[disabled=true]/field:opacity-50 dark:has-data-checked:bg-primary/10 [&>*]:data-[slot=field]:p-3",
+				"has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col",
 				className,
 			)}
 			data-slot="field-label"
@@ -135,10 +115,7 @@ export function FieldLabel({
 	);
 }
 
-export function FieldTitle({
-	className,
-	...props
-}: React.ComponentProps<"div">) {
+function FieldTitle({ className, ...props }: React.ComponentProps<"div">) {
 	return (
 		<div
 			className={cn(
@@ -151,15 +128,12 @@ export function FieldTitle({
 	);
 }
 
-export function FieldDescription({
-	className,
-	...props
-}: React.ComponentProps<"p">) {
+function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
 	return (
 		<p
 			className={cn(
-				"font-normal text-muted-foreground text-sm leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance",
-				"nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5",
+				"text-left font-normal text-muted-foreground text-sm leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance [[data-variant=legend]+&]:-mt-1.5",
+				"nth-last-2:-mt-1 last:mt-0",
 				"[&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4",
 				className,
 			)}
@@ -169,7 +143,7 @@ export function FieldDescription({
 	);
 }
 
-export function FieldSeparator({
+function FieldSeparator({
 	children,
 	className,
 	...props
@@ -187,7 +161,7 @@ export function FieldSeparator({
 			{...props}
 		>
 			<Separator className="absolute inset-0 top-1/2" />
-			{/** biome-ignore lint/nursery/noLeakedRender: Shadcn default */}
+			{/** biome-ignore lint/nursery/noLeakedRender: shadcn default */}
 			{children && (
 				<span
 					className="relative mx-auto block w-fit bg-background px-2 text-muted-foreground"
@@ -200,10 +174,10 @@ export function FieldSeparator({
 	);
 }
 
-export function FieldError({
+function FieldError({
 	className,
 	children,
-	errors: maybeErrors,
+	errors,
 	...props
 }: React.ComponentProps<"div"> & {
 	errors?: Array<{ message?: string } | undefined>;
@@ -213,26 +187,28 @@ export function FieldError({
 			return children;
 		}
 
-		const errors = (maybeErrors ?? []).filter((error) => error !== undefined);
-
-		if (errors.length === 0) {
+		if (!errors?.length) {
 			return null;
 		}
 
-		if (errors.length === 1 && errors[0]?.message) {
-			return errors[0].message;
+		const uniqueErrors = [
+			...new Map(errors.map((error) => [error?.message, error])).values(),
+		];
+
+		if (uniqueErrors?.length === 1) {
+			return uniqueErrors[0]?.message;
 		}
 
 		return (
 			<ul className="ml-4 flex list-disc flex-col gap-1">
-				{errors.map(
+				{uniqueErrors.map(
 					(error, index) =>
-						// biome-ignore lint/suspicious/noArrayIndexKey: Shadcn default
-						error.message && <li key={index}>{error.message}</li>,
+						// biome-ignore lint/suspicious/noArrayIndexKey: shadcn default
+						error?.message && <li key={index}>{error.message}</li>,
 				)}
 			</ul>
 		);
-	}, [children, maybeErrors]);
+	}, [children, errors]);
 
 	if (!content) {
 		return null;
@@ -249,3 +225,16 @@ export function FieldError({
 		</div>
 	);
 }
+
+export {
+	Field,
+	FieldLabel,
+	FieldDescription,
+	FieldError,
+	FieldGroup,
+	FieldLegend,
+	FieldSeparator,
+	FieldSet,
+	FieldContent,
+	FieldTitle,
+};

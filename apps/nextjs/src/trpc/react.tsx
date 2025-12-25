@@ -1,6 +1,8 @@
 "use client";
 
 import type { AppRouter } from "@finchat/api";
+import { getBaseUrl } from "@finchat/utils";
+import { env } from "@finchat/utils/env";
 import type { QueryClient } from "@tanstack/react-query";
 import { QueryClientProvider } from "@tanstack/react-query";
 import {
@@ -11,8 +13,6 @@ import {
 import { createTRPCContext } from "@trpc/tanstack-react-query";
 import { useState } from "react";
 import SuperJSON from "superjson";
-
-import { env } from "~/env";
 import { createQueryClient } from "./query-client";
 
 let clientQueryClientSingleton: QueryClient | undefined;
@@ -62,18 +62,3 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
 		</QueryClientProvider>
 	);
 }
-
-export const getBaseUrl = () => {
-	if (typeof window !== "undefined") {
-		return window.location.origin;
-	}
-
-	if (env.VERCEL_URL) {
-		if (env.VERCEL_ENV === "production") {
-			return `https://${env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`;
-		}
-		return `https://${env.VERCEL_URL}`;
-	}
-
-	return "http://localhost:3000";
-};

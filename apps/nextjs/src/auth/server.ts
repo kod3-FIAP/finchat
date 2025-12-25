@@ -1,12 +1,11 @@
 import "server-only";
 
 import { initAuth } from "@finchat/auth";
+import { getBaseUrl } from "@finchat/utils";
+import { env } from "@finchat/utils/env";
 import { nextCookies } from "better-auth/next-js";
 import { headers } from "next/headers";
 import { cache } from "react";
-
-import { env } from "~/env";
-import { getBaseUrl } from "~/trpc/react";
 
 export const auth = initAuth({
 	baseUrl: getBaseUrl(),

@@ -1,9 +1,8 @@
 {
 	"dependencies": {
 		"@finchat/db": "workspace:*",
-		"@t3-oss/env-core": "catalog:",
-		"better-auth": "catalog:",
-		"zod": "catalog:"
+		"@finchat/utils": "workspace:*",
+		"better-auth": "catalog:"
 	},
 	"devDependencies": {
 		"@better-auth/cli": "catalog:",
@@ -13,8 +12,7 @@
 	},
 	"exports": {
 		".": "./src/index.ts",
-		"./client": "./src/client.ts",
-		"./env": "./env.ts"
+		"./client": "./src/client.ts"
 	},
 	"name": "@finchat/auth",
 	"private": true,

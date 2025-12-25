@@ -1,4 +1,5 @@
 import { db } from "@finchat/db/client";
+import { env } from "@finchat/utils/env";
 import type { BetterAuthOptions, BetterAuthPlugin } from "better-auth";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
@@ -27,6 +28,12 @@ export function initAuth<
 			...(options.extraPlugins ?? []),
 		],
 		secret: options.secret,
+		socialProviders: {
+			google: {
+				clientId: env.AUTH_GOOGLE_CLIENT_ID,
+				clientSecret: env.AUTH_GOOGLE_CLIENT_SECRET,
+			},
+		},
 	} satisfies BetterAuthOptions;
 
 	return betterAuth(config);
