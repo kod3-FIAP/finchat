@@ -12,6 +12,7 @@
 		"@trpc/tanstack-react-query": "catalog:",
 		"better-auth": "catalog:",
 		"next": "catalog:",
+		"next-themes": "catalog:",
 		"react": "catalog:",
 		"react-dom": "catalog:",
 		"server-only": "catalog:",
@@ -38,7 +39,8 @@
 		"dev": "bun next dev",
 		"pull-secrets": "infisical export --format=dotenv > .env",
 		"start": "bun next start",
-		"tsc": "tsc --noEmit"
+		"tsc": "tsc --noEmit",
+		"typegen": "next typegen"
 	},
 	"type": "module"
 }

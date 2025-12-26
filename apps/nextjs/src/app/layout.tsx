@@ -1,12 +1,12 @@
-import { cn } from "@finchat/ui";
-import { ThemeProvider, ThemeToggle } from "@finchat/ui/theme";
-import { Toaster } from "@finchat/ui/toast";
+import { cn } from "@finchat/ui/lib/utils";
+import { Toaster } from "@finchat/ui/sonner";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 
 import { TRPCReactProvider } from "~/trpc/react";
 
-import "~/app/styles.css";
+import "~/app/globals.css";
 
 export const metadata: Metadata = {
 	description: "Sua plataforma de finanças",
@@ -41,9 +41,6 @@ export default function RootLayout(props: { children: React.ReactNode }) {
 			>
 				<ThemeProvider>
 					<TRPCReactProvider>{props.children}</TRPCReactProvider>
-					<div className="absolute right-4 bottom-4">
-						<ThemeToggle />
-					</div>
 					<Toaster />
 				</ThemeProvider>
 			</body>

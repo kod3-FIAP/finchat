@@ -3,7 +3,9 @@
 		"@base-ui/react": "catalog:",
 		"@radix-ui/react-icons": "catalog:",
 		"class-variance-authority": "catalog:",
+		"clsx": "catalog:",
 		"lucide-react": "^0.562.0",
+		"next-themes": "catalog:",
 		"radix-ui": "catalog:",
 		"sonner": "catalog:",
 		"tailwind-merge": "catalog:"
@@ -12,19 +14,15 @@
 		"@finchat/tsconfig": "workspace:*",
 		"@types/react": "catalog:",
 		"react": "catalog:",
+		"tailwindcss": "catalog:",
+		"tw-animate-css": "catalog:",
 		"typescript": "catalog:",
 		"zod": "catalog:"
 	},
 	"exports": {
-		".": "./src/index.ts",
-		"./button": "./src/button.tsx",
-		"./dropdown-menu": "./src/dropdown-menu.tsx",
-		"./field": "./src/field.tsx",
-		"./input": "./src/input.tsx",
-		"./label": "./src/label.tsx",
-		"./separator": "./src/separator.tsx",
-		"./theme": "./src/theme.tsx",
-		"./toast": "./src/toast.tsx"
+		"./*": "./src/*.tsx",
+		"./globals.css": "./src/styles/globals.css",
+		"./lib/*": "./src/lib/*.ts"
 	},
 	"name": "@finchat/ui",
 	"peerDependencies": {

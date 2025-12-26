@@ -14,6 +14,9 @@ export function initAuth<
 	extraPlugins?: TExtraPlugins;
 }) {
 	const config = {
+		account: {
+			modelName: "accounts",
+		},
 		baseURL: options.baseUrl,
 		database: drizzleAdapter(db, {
 			provider: "pg",
@@ -28,11 +31,20 @@ export function initAuth<
 			...(options.extraPlugins ?? []),
 		],
 		secret: options.secret,
+		session: {
+			modelName: "sessions",
+		},
 		socialProviders: {
 			google: {
 				clientId: env.AUTH_GOOGLE_CLIENT_ID,
 				clientSecret: env.AUTH_GOOGLE_CLIENT_SECRET,
 			},
+		},
+		user: {
+			modelName: "users",
+		},
+		verification: {
+			modelName: "verifications",
 		},
 	} satisfies BetterAuthOptions;
 

@@ -11,6 +11,7 @@ const config: NextConfig = {
 		"@finchat/db",
 		"@finchat/ui",
 	],
+	typedRoutes: true,
 
 	/** We already do linting and tscing as separate tasks in CI */
 	typescript: { ignoreBuildErrors: true },

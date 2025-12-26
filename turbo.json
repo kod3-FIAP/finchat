@@ -45,6 +45,9 @@
 			"dependsOn": ["^topo", "typegen"],
 			"outputs": [".cache/tsbuildinfo.json"]
 		},
+		"typegen": {
+			"outputs": ["next-env.d.ts", ".next/types/**"]
+		},
 		"ui-add": {
 			"cache": false,
 			"interactive": true

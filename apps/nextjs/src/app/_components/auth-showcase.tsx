@@ -25,6 +25,7 @@ export async function AuthShowcase() {
 						redirect(res.url);
 					}}
 					size="lg"
+					type="submit"
 				>
 					Sign in with Google
 				</Button>
@@ -48,6 +49,7 @@ export async function AuthShowcase() {
 						redirect("/");
 					}}
 					size="lg"
+					type="submit"
 				>
 					Sign out
 				</Button>

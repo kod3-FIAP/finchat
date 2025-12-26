@@ -1,6 +1,6 @@
 import { pgTable } from "drizzle-orm/pg-core";
 
-export const user = pgTable("user", (t) => ({
+export const users = pgTable("user", (t) => ({
 	createdAt: t.timestamp().notNull(),
 	email: t.text().notNull().unique(),
 	emailVerified: t.boolean().notNull(),
@@ -10,7 +10,7 @@ export const user = pgTable("user", (t) => ({
 	updatedAt: t.timestamp().notNull(),
 }));
 
-export const session = pgTable("session", (t) => ({
+export const sessions = pgTable("session", (t) => ({
 	createdAt: t.timestamp().notNull(),
 	expiresAt: t.timestamp().notNull(),
 	id: t.text().primaryKey(),
@@ -21,10 +21,10 @@ export const session = pgTable("session", (t) => ({
 	userId: t
 		.text()
 		.notNull()
-		.references(() => user.id, { onDelete: "cascade" }),
+		.references(() => users.id, { onDelete: "cascade" }),
 }));
 
-export const account = pgTable("account", (t) => ({
+export const accounts = pgTable("account", (t) => ({
 	accessToken: t.text(),
 	accessTokenExpiresAt: t.timestamp(),
 	accountId: t.text().notNull(),
@@ -40,10 +40,10 @@ export const account = pgTable("account", (t) => ({
 	userId: t
 		.text()
 		.notNull()
-		.references(() => user.id, { onDelete: "cascade" }),
+		.references(() => users.id, { onDelete: "cascade" }),
 }));
 
-export const verification = pgTable("verification", (t) => ({
+export const verifications = pgTable("verification", (t) => ({
 	createdAt: t.timestamp(),
 	expiresAt: t.timestamp().notNull(),
 	id: t.text().primaryKey(),
