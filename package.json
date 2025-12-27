@@ -20,7 +20,7 @@
 		"clean": "git clean -xdf node_modules",
 		"clean:workspaces": "turbo run clean",
 		"db:push": "turbo -F @finchat/db dev push",
-		"dev:next": "turbo dev studio --continue -F @finchat/nextjs...",
+		"dev": "turbo dev studio --continue -F @finchat/nextjs...",
 		"format": "biome check . --write --unsafe --error-on-warnings",
 		"pull-secrets": "bun -F './apps/*' pull-secrets",
 		"tsc": "turbo run tsc",

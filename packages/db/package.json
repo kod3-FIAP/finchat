@@ -14,7 +14,6 @@
 		"typescript": "catalog:"
 	},
 	"exports": {
-		".": "./src/index.ts",
 		"./client": "./src/client.ts",
 		"./schema": "./src/schema.ts"
 	},
