@@ -13,16 +13,12 @@ export async function AuthShowcase() {
 				<Button
 					formAction={async () => {
 						"use server";
-						const res = await auth.api.signInSocial({
+						await auth.api.signInSocial({
 							body: {
 								callbackURL: "/",
 								provider: "google",
 							},
 						});
-						if (!res.url) {
-							throw new Error("No URL returned from signInSocial");
-						}
-						redirect(res.url);
 					}}
 					size="lg"
 					type="submit"
